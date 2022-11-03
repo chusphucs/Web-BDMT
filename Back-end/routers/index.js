@@ -1,5 +1,5 @@
-const test = require('./test.route')
+const auth = require('./auth.route')
 
 module.exports = {
-    test: test,
+    auth: auth,
 }
