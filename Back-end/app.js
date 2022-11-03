@@ -16,7 +16,7 @@ app.use(express.json())
 
 app.use('/public', express.static('public'))
 
-app.use('/', routes.test)
+app.use('/api/auth', routes.auth)
 
 // test
 
