@@ -1,6 +1,6 @@
 import React, {useState, useContext} from "react"
-import style from '../signin/style.css'
-import bgLogin from '../../assets/images/bg-login.png'
+import bgLogin from '../../../assets/images/bg-login.png'
+import './signin.css'
 
 function Signin(props) {
     return (
