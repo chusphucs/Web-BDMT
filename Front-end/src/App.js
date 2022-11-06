@@ -1,12 +1,20 @@
-import logo from './logo.svg'
-import Login from '../src/features/login/login.jsx'
-import Signin from '../src/features/signin/signin.jsx'
-import './App.css'
+import Popup from './components/Popup'
+import { useState } from "react";
 
 function App() {
+    const [buttonPopup,setButtonPopup]=useState(false);
+
     return (
         <div className="App">
-            <Login/>
+            <main>
+                <h1>React popups</h1>
+                <br/><br/>
+                <button onClick={()=> setButtonPopup(true)}>Open popup</button>
+            </main>
+            <Popup trigger={buttonPopup}>
+                    <h3>my popup</h3>
+                    <p>This is my trigger popup</p>
+            </Popup>
         </div>
     )
 }
