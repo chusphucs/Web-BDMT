@@ -10,9 +10,9 @@
   "development": {
         "host": "127.0.0.1",
         "username": "root",
-        "password": "2404",
+        "password": "TvaT2201@",
         "port": 3306,
-        "database": "bdmt",
+        "database": "bdmt-blog",
         "dialect": "mysql"
   },
   "production": {
