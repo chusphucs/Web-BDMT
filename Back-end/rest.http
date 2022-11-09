@@ -3,7 +3,7 @@ POST http://localhost:9000/api/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "email" : "quang",
-  "role": 1,
+  "email" : "asdasd@gmail.com",
+  "role_id": 1,
   "password": "123456"
 }
