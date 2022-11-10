@@ -20,9 +20,9 @@ async function login(request, response) {
 
             jwt.sign(
                 {
-                    userId: dbUser.id,
+                    user_id: dbUser.id,
                     email: dbUser.email,
-                    role: dbUser.role,
+                    role_id: dbUser.role_id,
                 },
                 process.env.JWT_SECRET,
                 function (err, token) {

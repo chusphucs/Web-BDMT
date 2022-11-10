@@ -19,6 +19,12 @@ module.exports = {
             birthday: {
                 type: Sequelize.DATE,
             },
+            address: {
+                type: Sequelize.STRING,
+            },
+            phone_number: {
+                type: Sequelize.STRING,
+            },
             gender: {
                 defaultValue: false,
                 type: Sequelize.BOOLEAN,
