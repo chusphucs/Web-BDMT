@@ -94,3 +94,14 @@ yarn sequelize-cli db:seed:undo:all/ --seed name-of-seed-as-in-data
 6. Prettier format code:
 
     npm run format-code
+
+=====================================================
+- Run docker: 
+  docker run --name bdmt-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=bdmt -itd mysql
+
+- Run migration in :
+  (local database): npx sequelize db:migrate --env local
+  (remote database) npx sequelize db:migrate --env remote
+
+- Run seed:
+  npx sequelize-cli db:seed:all

@@ -22,7 +22,7 @@ module.exports = {
             },
             role_id: {
                 allowNull: false,
-                type: Sequelize.TINYINT,
+                type: Sequelize.INTEGER,
             },
             deletedAt: {
                 type: Sequelize.DATE,
