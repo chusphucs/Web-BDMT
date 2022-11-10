@@ -11,10 +11,10 @@ function App() {
                 <br/><br/>
                 <button onClick={()=> setButtonPopup(true)}>Open popup</button>
             </main>
-            <Popup trigger={buttonPopup}>
-                    <h3>my popup</h3>
-                    <p>This is my trigger popup</p>
-            </Popup>
+            <Popup 
+                trigger={buttonPopup} 
+                setTrigger={setButtonPopup}
+            />
         </div>
     )
 }
