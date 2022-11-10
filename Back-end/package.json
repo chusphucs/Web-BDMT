@@ -26,14 +26,14 @@
         "morgan": "^1.10.0",
         "mysql2": "^2.2.5",
         "node-sass": "^7.0.3",
-        "sequelize": "^6.6.2",
-        "sequelize-cli": "^6.5.2"
+        "sequelize": "^6.6.2"
     },
     "devDependencies": {
         "@types/cors": "^2.8.12",
         "husky": "^8.0.1",
         "lint-staged": "^13.0.3",
         "nodemon": "^2.0.20",
-        "prettier": "^2.7.1"
+        "prettier": "^2.7.1",
+        "sequelize-cli": "^6.5.2"
     }
 }
