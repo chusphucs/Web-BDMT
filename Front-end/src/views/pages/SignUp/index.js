@@ -7,18 +7,18 @@ import styles from "./style.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const SignInSchema = yup.object().shape({
+const SignupSchema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required(),
 });
 
-export default function SignIn() {
+export default function SignUp() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(SignInSchema),
+    resolver: yupResolver(SignupSchema),
   });
 
   const onSubmit = (data) => {
@@ -40,7 +40,7 @@ export default function SignIn() {
             <Typography
               className={clsx(styles.loginFormTitle, styles.Headline1)}
             >
-              Đăng nhập
+              Đăng ký
               <Typography
                 className={clsx(styles.loginFormSubTitle, styles.Body2)}
               >
@@ -60,7 +60,7 @@ export default function SignIn() {
                 />
                 {errors.username && (
                   <Typography className={styles.ErrorMessage}>
-                    Hãy nhập tên đăng nhập nha cđ
+                    Xin vui lòng nhập tên đăng nhập
                   </Typography>
                 )}
               </div>
@@ -73,7 +73,7 @@ export default function SignIn() {
                 />
                 {errors.password && (
                   <Typography className={styles.ErrorMessage}>
-                    Hãy nhập password nha cđ
+                    Xin vui lòng nhập mật khẩu
                   </Typography>
                 )}
               </div>
