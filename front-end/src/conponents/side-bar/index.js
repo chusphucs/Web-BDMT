@@ -1,12 +1,17 @@
 import * as React from "react";
+import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { useState } from "react";
-import { menus } from "./Data";
-import { NavLink, useLocation } from "react-router-dom";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import EditIcon from "@mui/icons-material/Edit";
+import HomeIcon from "@mui/icons-material/Home";
+import StoreIcon from "@mui/icons-material/Store";
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import styles from "./style.module.scss";
 import clsx from "clsx";
 import {
@@ -15,6 +20,39 @@ import {
   TripOrigin,
 } from "@mui/icons-material";
 import { Collapse } from "@mui/material";
+
+const menus = [
+  {
+    icon: <DashboardIcon />,
+    title: "Dashboard",
+    path: "/",
+  },
+  {
+    icon: <HomeIcon />,
+    title: "Home",
+    path: "/",
+  },
+  {
+    icon: <EditIcon />,
+    title: "Post approval",
+    path: "/postApproval",
+  },
+  {
+    icon: <PersonRoundedIcon />,
+    title: "User",
+    path: "/user",
+  },
+  {
+    icon: <StoreIcon />,
+    title: "Store",
+    path: "/store",
+  },
+  {
+    icon: <LogoutRoundedIcon />,
+    title: "Logout",
+    path: "/logout",
+  },
+];
 
 export default function SideMenu(props) {
   const router = useLocation();
