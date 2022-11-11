@@ -6,13 +6,13 @@ import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 
 import styles from "./style.module.scss";
-import { Search } from "./Search";
+import { Search } from "./search";
 import clsx from "clsx";
 
 //TODO handle User Account
 const userAccount = "Le Quoc Viet";
 
-export const PageHeading = (props) => {
+export const Header = (props) => {
   return (
     <Grid container className={styles.PageHeading}>
       <Grid item width={"20%"}>

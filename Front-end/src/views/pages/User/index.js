@@ -1,13 +1,12 @@
 import {
   Avatar,
-  Box,
   Button,
   Card,
   Grid,
   TextField,
   Typography,
 } from "@mui/material";
-import Layout from "../../components/Layout";
+import Layout from "../../../conponents/layout";
 import styles from "./style.module.scss";
 
 const UserInfoDataSample = {

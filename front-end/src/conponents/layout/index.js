@@ -4,10 +4,10 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
-import SideMenu from "../SideMenu";
+import SideMenu from "../side-bar";
 import styles from "./style.module.scss";
 
-import { PageHeading } from "../Heading";
+import { Header } from "../header";
 
 const drawerWidth = 240;
 
@@ -32,7 +32,7 @@ export default function Layout(props) {
         classes={{ root: styles.AppBar }}
       >
         <Toolbar className={styles.Toolbar}>
-          <PageHeading />
+          <Header />
         </Toolbar>
       </AppBar>
       <Box
