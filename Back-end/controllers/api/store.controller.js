@@ -58,7 +58,7 @@ async function updateById(request, response) {
         const dbStore = await getStoreByID(storeID)
         if (!dbStore) {
             return response.status(404).json({
-                message: 'Store not found!',
+                message: 'store not found!',
             })
         }
 

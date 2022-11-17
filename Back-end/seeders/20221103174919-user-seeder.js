@@ -20,7 +20,7 @@ module.exports = {
                     role_id: 1,
                 },
                 {
-                    name: 'Store Owner 1',
+                    name: 'store Owner 1',
                     email: 'storeowner1@gmail.com',
                     password: hash_helper.hash('123456'),
                     role_id: 2,
