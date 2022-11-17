@@ -7,7 +7,7 @@ import Toolbar from "@mui/material/Toolbar";
 import SideMenu from "../side-bar";
 import styles from "./style.module.scss";
 
-import { Header } from "../header";
+import { Header } from "../../components/header";
 
 const drawerWidth = 240;
 

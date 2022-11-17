@@ -1,4 +1,4 @@
-import Layout from "../../../conponents/layout";
+import Layout from "../../../components/layout";
 
 export const Store = () => {
   return <Layout>Store is pending status !!!!!</Layout>;

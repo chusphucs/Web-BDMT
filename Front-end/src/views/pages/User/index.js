@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import Layout from "../../../conponents/layout";
+import Layout from "../../../components/layout";
 import styles from "./style.module.scss";
 
 const UserInfoDataSample = {
