@@ -35,7 +35,7 @@ async function showById(request, response) {
             return response.status(200).json(dbUser)
         } else {
             return response.status(404).json({
-                message: 'User not found!',
+                message: 'user not found!',
             })
         }
     } catch (error) {
@@ -125,7 +125,7 @@ async function updateById(request, response) {
             })
         } else {
             return response.status(404).json({
-                message: 'User not found!',
+                message: 'user not found!',
             })
         }
     } catch (error) {
@@ -151,7 +151,7 @@ async function softDeleteById(request, response) {
             })
         } else {
             return response.status(404).json({
-                message: 'User not found!',
+                message: 'user not found!',
             })
         }
     } catch (error) {

@@ -9,7 +9,7 @@ import styles from "./style.module.scss";
 import { Search } from "./search";
 import clsx from "clsx";
 
-//TODO handle User Account
+//TODO handle user Account
 const userAccount = "Le Quoc Viet";
 
 export const Header = (props) => {

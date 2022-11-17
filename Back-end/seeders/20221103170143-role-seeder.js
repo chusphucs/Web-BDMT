@@ -9,7 +9,7 @@ module.exports = {
                     name: 'Reviewer',
                 },
                 {
-                    name: 'Store Owner',
+                    name: 'store Owner',
                 },
                 {
                     name: 'Admin',
