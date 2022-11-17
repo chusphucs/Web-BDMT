@@ -1,6 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
+import GuestRoute from "./guest-route"
+import AuthenticatedRoute from "./authenticated-route"
 import SignUp from "../pages/sign-up";
 import SignIn from "../pages/sign-in";
 import { Home } from "../pages/home";
@@ -9,15 +11,21 @@ import { User } from "../pages/user";
 import { Store } from "../pages/store";
 
 function AllRoutes() {
-  return (
-    <Routes>
-      <Route path="" element={<Home />} />
-      <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/post-approval" element={<PostApproval />} />
-      <Route path="/user" element={<User />} />
-      <Route path="/store" element={<Store />} />
-    </Routes>
-  );
+    return (
+        <Routes>
+            <Route element={<GuestRoute />}>
+                <Route path="/sign-in" element={<SignIn />} />
+                <Route path="/sign-up" element={<SignUp />} />
+            </Route>
+            <Route
+                element={<AuthenticatedRoute/>}
+            >
+                <Route path="" element={<Home />} />
+                <Route path="/post-approval" element={<PostApproval />} />
+                <Route path="/user" element={<User />} />
+                <Route path="/store" element={<Store />} />
+            </Route>
+        </Routes>
+    );
 }
 export default AllRoutes;

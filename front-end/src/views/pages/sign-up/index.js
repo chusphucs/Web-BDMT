@@ -1,25 +1,38 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Form, Input } from "antd";
-import { MailOutlined, LockOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined, MailOutlined, SettingOutlined, HomeFilled } from "@ant-design/icons";
 import { messages } from "../../../assets/lang/messages";
+import "bootstrap/dist/css/bootstrap.min.css";
+import auth from '../../../api/auth'
 import "./sign-up.scss";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-function SignUp() {
-  const [inputEmailState, setInputEmailState] = useState(false);
-  const [inputPasswordState, setInputPasswordState] = useState(false);
-
-    const onFinish = (values) => {
+function SignIn() {
+    const [inputEmailState, setInputEmailState] = useState(false);
+    const [inputUsernameState, setInputUsernameState] = useState(false);
+    const [inputPasswordState, setInputPasswordState] = useState(false);
+    const [inputPasswordConfirmState, setInputPasswordConfirmState] = useState(false);
+    const [roleId, setRoleId] = useState(1);
+    const navigate = useNavigate();
+    const onFinish = async (values) => {
+        try {
+            values.role_id = roleId
+            const response = await auth.register(values)
+            alert(response.data.message)
+            navigate('/sign-in')
+        } catch (error) {
+            alert(error.response.data.message)
+        }
     };
 
     return (
         <div className="sign-up-container">
+            <div className="sign-up-container__home-icon" onClick={() => navigate("/")}>
+                <HomeFilled className="icon"/>
+            </div>
             <div className="sign-up-container__content">
                 <h1>サインアップ</h1>
-                <Form
-                    className="mt-5"
-                    onFinish={onFinish}
-                >
+                <Form className="mt-5" onFinish={onFinish}>
                     <div
                         className={
                             inputEmailState
@@ -28,6 +41,7 @@ function SignUp() {
                         }
                     >
                         <MailOutlined className="icon" />
+
                         <Form.Item
                             name="email"
                             rules={[
@@ -47,6 +61,48 @@ function SignUp() {
                                 onFocus={() => setInputEmailState(true)}
                                 onBlur={() => setInputEmailState(false)}
                             />
+                        </Form.Item>
+                    </div>
+                    <div
+                        className={
+                            inputUsernameState
+                                ? "sign-up-container__content__item active"
+                                : "sign-up-container__content__item"
+                        }
+                    >
+                        <UserOutlined className="icon" />
+                        <Form.Item
+                            name="username"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: messages["text_required"],
+                                },
+                            ]}
+                        >
+                            <Input
+                                className="input"
+                                placeholder="Username"
+                                onFocus={() => setInputUsernameState(true)}
+                                onBlur={() => setInputUsernameState(false)}
+                            />
+                        </Form.Item>
+                    </div>
+                    <div
+                        className={
+                            inputUsernameState
+                                ? "sign-up-container__content__item active"
+                                : "sign-up-container__content__item"
+                        }
+                    >
+                        <SettingOutlined className="icon" />
+                        <Form.Item
+                            name="role_id"
+                        >
+                            <select name="role" className="select-box" onChange={(e) => setRoleId(parseInt(e.target.value))} >
+                                <option value="1">Reviewer</option>
+                                <option value="2">Store Owner</option>
+                            </select>
                         </Form.Item>
                     </div>
                     <div
@@ -81,18 +137,64 @@ function SignUp() {
                             />
                         </Form.Item>
                     </div>
-                    <label className="mt-3">パスワードをお忘れですか?</label>
+                    <div
+                        className={
+                            inputPasswordConfirmState
+                                ? "sign-up-container__content__item active"
+                                : "sign-up-container__content__item"
+                        }
+                    >
+                        <LockOutlined className="icon" />
+                        <Form.Item
+                            name="comfirm-password"
+                            dependencies={["password"]}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: messages["text_required"],
+                                },
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        if (
+                                            !value ||
+                                            getFieldValue("password") === value
+                                        ) {
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(
+                                            new Error(
+                                                messages[
+                                                    "confirm_password_not_match"
+                                                ]
+                                            )
+                                        );
+                                    },
+                                }),
+                            ]}
+                        >
+                            <Input.Password
+                                className="input"
+                                placeholder="Confirm password"
+                                onFocus={() =>
+                                    setInputPasswordConfirmState(true)
+                                }
+                                onBlur={() =>
+                                    setInputPasswordConfirmState(false)
+                                }
+                            />
+                        </Form.Item>
+                    </div>
                     <Form.Item>
                         <Button
                             type="primary"
                             htmlType="submit"
-                            className="btn-submit my-3"
+                            className="btn-submit mt-4 mb-3"
                         >
-                            サインアップ
+                            サインイン
                         </Button>
                     </Form.Item>
-                    <a href="/sign-in" className="text-center ">
-                      新しいアカウントを作成する
+                    <a href="/sign-up" className="text-center ">
+                        すでにアカウントをお持ちですか？ サインイン
                     </a>
                 </Form>
             </div>
@@ -100,4 +202,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default SignIn;
