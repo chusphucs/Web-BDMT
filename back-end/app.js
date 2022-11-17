@@ -21,5 +21,7 @@ app.use('/api/posts', routes.post)
 app.use('/api/users', routes.user)
 app.use('/api/stores', routes.store)
 
+app.use('/api/upload', routes.upload)
+
 
 module.exports = app
