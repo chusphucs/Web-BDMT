@@ -11,7 +11,6 @@ async function login(request, response) {
                     message: 'This user was deleted!',
                 })
             }
-
             if (!hashHelper.compare(request.body.password, dbUser.password)) {
                 return response.status(400).json({
                     message: 'Wrong password!',
@@ -34,6 +33,7 @@ async function login(request, response) {
                     return response.status(200).json({
                         message: 'Login successfully!',
                         token: token,
+                        user: dbUser,
                     })
                 },
             )
@@ -43,6 +43,7 @@ async function login(request, response) {
             })
         }
     } catch (error) {
+        console.log(error);
         return response.status(500).json({
             message: 'Something went wrong!',
             error: error,

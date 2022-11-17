@@ -7,6 +7,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  &__home-icon{
+    color: #fff;
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    cursor: pointer;
+    .icon{
+        font-size: 50px;
+    }
+  }
   &__content {
       width: 30vw;
       height: fit-content;
@@ -59,14 +69,6 @@
               top: 120%;
               left: 44px;
               color: red;
-          }
-          .select-box{
-            border: none;
-            background-color: transparent;
-            margin-left: 15px;
-            margin-right: auto;
-            width: 100%;
-            outline: none;
           }
       }
       .active {
