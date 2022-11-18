@@ -1,0 +1,82 @@
+$basic-color: #ff8c32;
+
+.Container {
+  padding: 0.5rem !important;
+  .ContentLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4rem;
+    .AvatarUser {
+      width: 10rem !important;
+      height: 10rem !important;
+    }
+    .InfoUser {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 0 !important;
+      & .Name {
+        font-weight: 700 !important;
+        font-size: 30px !important;
+      }
+      & .ExtraInfoUser {
+        margin: 5rem 0 !important;
+      }
+    }
+  }
+  .ContentRight {
+    .Title {
+      text-align: center;
+      font-weight: 600 !important;
+      font-size: 30px !important;
+      padding-bottom: 2rem;
+    }
+    .CardInfo {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 3rem;
+      border-radius: 1rem;
+
+      .TitleTextField {
+        padding-bottom: 0.5rem;
+        font-weight: 600 !important;
+        font-size: 15px !important;
+      }
+      .ButtonContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .Button {
+          margin: 0 1rem;
+          background-color: $basic-color;
+        }
+      }
+    }
+  }
+}
+
+.ContentTextField {
+  width: 100% !important;
+  padding-bottom: 2rem !important;
+}
+
+.Popup {
+  & .Button {
+    margin: 0 1rem;
+    color: #ffffff;
+    background-color: $basic-color;
+  }
+  & .TextFieldPopup {
+    margin-top: 0.5rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  & .DialogActions {
+    padding-top: 0;
+    padding-bottom: 1.5rem;
+  }
+}
