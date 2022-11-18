@@ -4,6 +4,7 @@ const user = require('./user.route')
 const store = require('./store.route')
 const comment = require('./comment.route')
 const like = require('./like.route')
+const upload = require('./upload.route')
 
 module.exports = {
     auth: auth,
@@ -11,5 +12,7 @@ module.exports = {
     user: user,
     store: store,
     comment: comment,
-    like: like
+    like: like,
+    store: store,
+    upload: upload
 }

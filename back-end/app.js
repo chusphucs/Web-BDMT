@@ -23,5 +23,7 @@ app.use('/api/stores', routes.store)
 app.use('/api/comments', routes.comment)
 app.use('/api/likes', routes.like)
 
+app.use('/api/upload', routes.upload)
+
 
 module.exports = app
