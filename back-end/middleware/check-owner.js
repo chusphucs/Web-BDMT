@@ -4,9 +4,9 @@ const ADMIN_ROLE = 3
 async function checkAccountOwner(request, response, next) {
     try {
         const userId = request.params.id
-        const requestRole = request.userData.role
-        const requestUserId = request.userData.userId
-
+        const requestRole = request.user.role_id
+        const requestUserId = request.user.user_id
+        
         // Check if request user is admin or not
         if (requestRole != ADMIN_ROLE) {
             // If API don't have id then this API is for admin only
