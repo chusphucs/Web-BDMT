@@ -4,6 +4,7 @@ const models = require('../../models/index')
 
 async function login(request, response) {
     try {
+        
         const dbUser = await models.User.findOne({ where: { email: request.body.email } })
         if (dbUser) {
             if (dbUser.deletedAt != null) {
