@@ -21,15 +21,14 @@ export const AuthProvider = ({ children }) => {
             axiosClient.defaults.headers.common[
                 'Authorization'
             ] = `Bearer ${token}`
-
             if (token !== localStorage.getItem('token')) {
                 localStorage.setItem('token', token)
                 localStorage.setItem('user', JSON.stringify(user))
             }
         } else {
             setUser('null')
-            localStorage.setItem('token', null)
-            localStorage.setItem('user', null)
+            localStorage.setItem('token', "null")
+            localStorage.setItem('user', "null")
         }
     }, [token,  navigate])
 
