@@ -1,24 +1,25 @@
 const commentModel = require(process.cwd() + '/models/index').Comment
 
-async function index() {
+const CommentDAO = {}
+
+CommentDAO.index = async () => {
     return commentModel.findAndCountAll()
 }
 
-async function findByID(id) {
+CommentDAO.findByID = async (id) => {
     return commentModel.findOne({ where: { id: id } })
 }
 
-async function findByPostID(post_id) {
-    return commentModel.findAll({ where: { post_id: post_id } })
+CommentDAO.findByPostIDAndParentID = async (post_id, parent_id)  =>  {
+    return commentModel.findAll({ where: { post_id: post_id, parent_id: parent_id } })
 }
 
-async function create(newComment) {
+CommentDAO.findByParentID = async (parent_id)  =>  {
+    return commentModel.findAll({ where: { parent_id: parent_id } })
+}
+
+CommentDAO.create = async (newComment) => {
     return commentModel.create(newComment)
 }
 
-module.exports = {
-    getListComment: index,
-    getCommentByID: findByID,
-    addNewComment: create,
-    getListCommentByPostID: findByPostID
-}
+module.exports = CommentDAO

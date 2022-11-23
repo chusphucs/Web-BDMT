@@ -15,6 +15,9 @@ module.exports = {
       post_id: {
         type: Sequelize.INTEGER
       },
+      parent_id: {
+        type: Sequelize.INTEGER
+      },
       content: {
         type: Sequelize.STRING
       },
