@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   Like.init({
     user_id: DataTypes.INTEGER,
     post_id: DataTypes.INTEGER,
+    comment_id: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   }, {

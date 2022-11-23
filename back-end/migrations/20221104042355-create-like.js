@@ -15,6 +15,9 @@ module.exports = {
       post_id: {
         type: Sequelize.INTEGER
       },
+      comment_id: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
