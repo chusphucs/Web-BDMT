@@ -1,6 +1,6 @@
 $primary_dark: #098edf;
 $hover: #f6f6f6;
-$basic-color: #F66B0E;
+$basic-color: #489d7e;
 
 @mixin text-style($fontW, $fontS, $lineH, $letterS) {
   font-weight: $fontW;
@@ -43,9 +43,10 @@ $basic-color: #F66B0E;
     & .link {
       @include flex(center, center);
       @include setSizeBox(100%, 100%);
-      text-decoration: none;
+      text-decoration: none !important;
       color: #000000;
     }
+
 
     & .ListItemIcon {
       min-width: 25px;

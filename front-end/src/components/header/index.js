@@ -38,7 +38,6 @@ export const Header = (props) => {
             <Typography className={styles.Text}>{userAccount}</Typography>
           </>
         )}
-        <LogoutRoundedIcon />
       </Grid>
     </Grid>
   );

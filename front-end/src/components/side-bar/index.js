@@ -23,11 +23,6 @@ import { Collapse } from "@mui/material";
 
 const menus = [
   {
-    icon: <DashboardIcon />,
-    title: "Dashboard",
-    path: "/",
-  },
-  {
     icon: <HomeIcon />,
     title: "Home",
     path: "/",
@@ -40,7 +35,7 @@ const menus = [
   {
     icon: <PersonRoundedIcon />,
     title: "User",
-    path: "/user",
+    path: "/profile",
   },
   {
     icon: <StoreIcon />,

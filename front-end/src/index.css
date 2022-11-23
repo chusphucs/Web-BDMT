@@ -56,12 +56,12 @@ a:hover{
 .btn:hover{
   background-color: #dbdbdb;
 }
-.btn-blue{
-  background-color: #0f83bd !important;
+.btn-green{
+  background-color: #489d7e !important;
   color: #fff !important;
   outline: none;
 }
-.btn-blue:hover{
+.btn-green:hover{
   background-color: #0b628e !important;
 }
 

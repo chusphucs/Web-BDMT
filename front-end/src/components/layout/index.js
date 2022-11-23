@@ -26,8 +26,7 @@ export default function Layout(props) {
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          width: { sm: `calc(100%)` },
         }}
         classes={{ root: styles.AppBar }}
       >
@@ -64,6 +63,8 @@ export default function Layout(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              top: "64px",
+              boxShadow: 3,
             },
           }}
           open

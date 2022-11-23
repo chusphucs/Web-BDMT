@@ -193,7 +193,7 @@ function SignIn() {
                             サインイン
                         </Button>
                     </Form.Item>
-                    <a href="/sign-up" className="text-center ">
+                    <a href="/sign-in" className="text-center ">
                         すでにアカウントをお持ちですか？ サインイン
                     </a>
                 </Form>

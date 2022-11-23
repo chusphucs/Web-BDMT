@@ -6,6 +6,7 @@ import { messages } from "../../../assets/lang/messages";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import auth from '../../../api/auth'
 import useAuth from '../../../hooks/useAuth'
+import axiosClient from "../../../api/axiosClient";
 import "./sign-in.scss";
 
 function SignUp() {
@@ -22,11 +23,10 @@ function SignUp() {
                 alert(response.data.message)
             }
         } catch (error) {
-            console.log(error.response.data);
+            console.log(error);
             alert(error.response.data.message)
         }
     };
-
     return (
         <div className="sign-in-container">
             <div className="sign-in-container__home-icon" onClick={() => navigate("/")}>
@@ -109,7 +109,7 @@ function SignUp() {
                             サインアップ
                         </Button>
                     </Form.Item>
-                    <a href="/sign-in" className="text-center ">
+                    <a href="/sign-up" className="text-center ">
                       新しいアカウントを作成する
                     </a>
                 </Form>

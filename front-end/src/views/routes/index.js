@@ -7,7 +7,7 @@ import SignUp from "../pages/sign-up";
 import SignIn from "../pages/sign-in";
 import { Home } from "../pages/home";
 import { PostApproval } from "../pages/PostApproval";
-import { User } from "../pages/user";
+import Profile from "../pages/profile";
 import { Store } from "../pages/store";
 
 function AllRoutes() {
@@ -22,7 +22,7 @@ function AllRoutes() {
             >
                 <Route path="" element={<Home />} />
                 <Route path="/post-approval" element={<PostApproval />} />
-                <Route path="/user" element={<User />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/store" element={<Store />} />
             </Route>
         </Routes>
