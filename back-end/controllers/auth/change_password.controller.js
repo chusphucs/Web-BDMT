@@ -6,9 +6,7 @@ const { getUserById, updateUserById } = require('../CRUD/user')
 async function changePassword(request, response) {
     try {
         const userId = request.user.user_id
-
-        console.log(userId);
-
+        
         // Check if user exists
         const dbUser = await getUserById(userId)
         if (dbUser) {
