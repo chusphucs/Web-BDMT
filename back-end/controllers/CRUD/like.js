@@ -1,10 +1,12 @@
 const likeModel = require(process.cwd() + '/models/index').Like
 
-async function index(postID) {
+const LikeDAO = {}
+
+LikeDAO.index = async (postID) => {
     return likeModel.findAndCountAll({ where: { post_id: postID } })
 }
 
-async function findByUserIDAndPostID(userID, postID) {
+LikeDAO.findByUserIDAndPostID = async (userID, postID) => {
     return likeModel.findOne(
         {
             where: {
@@ -15,15 +17,30 @@ async function findByUserIDAndPostID(userID, postID) {
     )
 }
 
-async function findByPostID(post_id) {
+LikeDAO.findByUserIDAndCommentID = async (userID, commentID) => {
+    return likeModel.findOne(
+        {
+            where: {
+                user_id: userID,
+                comment_id: commentID
+            }
+        }
+    )
+}
+
+LikeDAO.findByCommentID = async (comment_id) => {
+    return likeModel.findAll({ where: { comment_id: comment_id } })
+}
+
+LikeDAO.findByPostID = async (post_id) => {
     return likeModel.findAll({ where: { post_id: post_id } })
 }
 
-async function create(newLike) {
+LikeDAO.create = async (newLike) => {
     return likeModel.create(newLike)
 }
 
-async function destroy(userID, postID) {
+LikeDAO.destroy = async (userID, postID) => {
     return likeModel.destroy(
         {
             where: {
@@ -34,9 +51,4 @@ async function destroy(userID, postID) {
     )
 }
 
-module.exports = {
-    getLikesByPostID: index,
-    getLikeByUserIDAndPostID: findByUserIDAndPostID,
-    createLike: create,
-    deleteLike: destroy
-}
+module.exports = LikeDAO
