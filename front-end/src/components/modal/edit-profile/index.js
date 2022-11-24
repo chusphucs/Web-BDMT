@@ -2,20 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Modal, Radio, DatePicker, Form, Input } from "antd";
 import { CameraFilled } from "@ant-design/icons";
 import moment from 'moment'
-import * as defaultImageUrl from "../../shared/constants/defaultImageUrl"
-import uploadImageApi from "../../api/uploadImageApi";
-import userApi from "../../api/userApi";
+import * as defaultImageUrl from "../../../shared/constants/defaultImageUrl"
+import uploadImageApi from "../../../api/uploadImageApi";
+import userApi from "../../../api/userApi";
+import useAuth from "../../../hooks/useAuth";
 
 import "./edit-profile.scss";
 
-function EditProfile({ userProfile, isModalOpen, handleOpenModal }) {
+function EditProfile({isModalOpen, handleOpenModal }) {
+    const {user} = useAuth()
     const [selectedImage, setSelectedImage] = useState();
 
-
     const onSubmit = async (values) => {
-        values.birthday = values.birthday ? values.birthday.toDate() : userProfile.UserInfo.birthday
+        values.birthday = values.birthday ? values.birthday.toDate() : user.UserInfo.birthday
         updateImage();
-        await userApi.updateById(userProfile.id, values)
+        await userApi.updateById(user.id, values)
         window.location.reload(false)
     };
 
@@ -30,12 +31,11 @@ function EditProfile({ userProfile, isModalOpen, handleOpenModal }) {
         const formData = new FormData();
         if(selectedImage) {
             formData.append("user-avatar", selectedImage);
-            await uploadImageApi.uploadUserAvatar(userProfile.id, formData);
+            await uploadImageApi.uploadUserAvatar(user.id, formData);
         }
     };
 
     return (
-        userProfile.UserInfo && 
         <Modal
             className="edit-profile"
             open={isModalOpen}
@@ -46,7 +46,7 @@ function EditProfile({ userProfile, isModalOpen, handleOpenModal }) {
             <div className="edit-profile__avatar">
                 <img
                     id="user-avatar"
-                    src={process.env.REACT_APP_API_URL + userProfile.UserInfo.avatar}
+                    src={process.env.REACT_APP_API_URL + user.UserInfo.avatar}
                     alt=""
                     onError={(e)=>{
                         e.target.onerror = null; 
@@ -69,14 +69,14 @@ function EditProfile({ userProfile, isModalOpen, handleOpenModal }) {
                     <lable className="col-3">Họ và tên</lable>
                     <div className="col-1"></div>
                     <Form.Item name="name" className="col-8 mb-0">
-                        <Input defaultValue={userProfile.name} />
+                        <Input defaultValue={user.name} />
                     </Form.Item>
                 </div>
                 <div className="edit-profile__content__item">
                     <lable className="col-3">Giới tính</lable>
                     <div className="col-1"></div>
                     <Form.Item name="gender" className="col-8 mb-0">
-                        <Radio.Group defaultValue={userProfile.UserInfo.gender}>
+                        <Radio.Group defaultValue={user.UserInfo.gender}>
                             <Radio value={false}>Nữ</Radio>
                             <Radio value={true}>Nam</Radio>
                         </Radio.Group>
@@ -89,7 +89,7 @@ function EditProfile({ userProfile, isModalOpen, handleOpenModal }) {
                         <DatePicker
                                 className="col-12"
                                 defaultValue={moment(
-                                    new Date(userProfile.UserInfo.birthday),
+                                    new Date(user.UserInfo.birthday),
                                     'YYYY/MM/DD',
                                 )}
                                 format="DD/MM/YYYY"
@@ -100,14 +100,14 @@ function EditProfile({ userProfile, isModalOpen, handleOpenModal }) {
                     <lable className="col-3">Địa chỉ</lable>
                     <div className="col-1"></div>
                     <Form.Item name="address" className="col-8 mb-0">
-                        <Input defaultValue={userProfile.UserInfo.address}/>
+                        <Input defaultValue={user.UserInfo.address}/>
                     </Form.Item>
                 </div>
                 <div className="edit-profile__content__item">
                     <lable className="col-3">Số điện thoại</lable>
                     <div className="col-1"></div>
                     <Form.Item name="phone_number" className="col-8 mb-0">
-                        <Input defaultValue={userProfile.UserInfo.phone_number} />
+                        <Input defaultValue={user.UserInfo.phone_number} />
                     </Form.Item>
                 </div>
                 <div className="edit-profile__content__footer">
