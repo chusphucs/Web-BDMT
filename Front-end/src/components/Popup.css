@@ -1,0 +1,117 @@
+.popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color:  rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-inner{
+    text-align: center;
+    border-radius: 4px;
+    position: relative;
+    padding: 8px;
+    width: 100%;
+    max-height: 800px;
+    max-width: 640px;
+    background-color: #ffffff;
+    overflow: scroll;
+}
+
+.popup-inner .close-btn {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    height: 32px;
+    width: 32px;
+  }
+  .popup-inner .close-btn:hover {
+    opacity: 1;
+  }
+  .popup-inner .close-btn:before, .popup-inner .close-btn:after {
+    position: absolute;
+    left: 15px;
+    content: '';
+    height: 33px;
+    width: 2px;
+  }
+  .popup-inner .close-btn:before {
+    transform: rotate(45deg);
+  }
+  .popup-inner .close-btn:after {
+    transform: rotate(-45deg);
+  }
+ .create-post-header{
+    text-align: center;
+    display: block;
+    border-bottom: 0.3px inset #333;
+ }
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+.create-post-avatar{
+    display: flex;
+}
+.create-post-avatar .avatar{
+    padding: 12px 20px 12px 32px;
+}
+.create-post-body{
+  padding-bottom: 20px;
+  text-align: center;
+}
+.create-post-body textarea{
+  border: none;
+  font-size: 14px;
+  width: 600px;
+  height: 200px;
+}
+.create-post-body textarea:focus{
+  border: none;
+}
+.div-icon{
+  border-radius: 8px;
+  display: inline-block;
+  height: 60px;
+  width: 520px;
+  border: 0.3px inset #333;
+  text-align: left;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 1px 1px 1px #888888;
+  position: relative;
+}
+.div-icon h5{
+  padding-left: 24px;
+}
+.btn-submit{
+  border-radius: 16px;
+  margin: 16px;
+  height:40px;
+  width:520px;
+  background-color: #64B5FF;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 1.5px 1.5px 1.5px #888888;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+  right: 0px;
+}
+
+input[type="file"] {
+  display: none;
+}
