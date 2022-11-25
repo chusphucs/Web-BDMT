@@ -2,33 +2,27 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Layout from "../../../components/layout";
 import Info from "../../../components/info"
-import EditProfile from "../../../components/edit-profile";
-import userApi from "../../../api/userApi"
+import ChangePassword from "../../../components/change-password";
+import EditProfile from "../../../components/modal/edit-profile";
 import useAuth from "../../../hooks/useAuth";
 import * as defaultImageUrl from "../../../shared/constants/defaultImageUrl"
 import "./profile.scss";
 const INFO_TAB = 1;
 const POST_TAB = 2;
+const CHANGE_PASSWORD_TAB = 3;
 function Profile() {
     const {user} = useAuth()
-    const [userProfile, setUserProfile] = useState({})
     const [tab, setTab] = useState(INFO_TAB);
     const [isModalOpen, setisModalOpen] = useState(false);
-    useEffect( () => {
-        userApi.getUserById(user.id).then((response) => {
-            setUserProfile(response.data);
-        })
-    }, [])
     const handleOpenModal = (state) => {
         setisModalOpen(state);
     };
     return (
-        userProfile &&
         <Layout>
-            <div className="profile-container col-8">
+            <div className="profile-container col-9">
                 <div className="profile-container__top">
                     <img 
-                        src={process.env.REACT_APP_API_URL+userProfile?.UserInfo?.avatar} 
+                        src={process.env.REACT_APP_API_URL+user?.UserInfo?.avatar} 
                         alt=""
                         onError={(e)=>{
                             e.target.onerror = null; 
@@ -36,12 +30,13 @@ function Profile() {
                         }}  
                     />
                     <div className="mt-auto ms-4">
-                        <h2>{userProfile.name}</h2>
-                        <div className="button"><button onClick={() => handleOpenModal(true)}>Chỉnh sửa</button> </div>
+                        <h2>{user.name}</h2>
+                        <div className="button">
+                            <button className="btn-green" onClick={() => handleOpenModal(true)}>Chỉnh sửa</button> 
+                        </div>
                         <EditProfile
                             isModalOpen={isModalOpen}
                             handleOpenModal={handleOpenModal}
-                            userProfile={userProfile}
                         />
                     </div>
                 </div>
@@ -60,13 +55,20 @@ function Profile() {
                         >
                             Bài viết
                         </button>
+                        <button
+                            className={tab === CHANGE_PASSWORD_TAB && "active"}
+                            onClick={() => setTab(CHANGE_PASSWORD_TAB)}
+                        >
+                            Đổi mật khẩu
+                        </button>
                     </div>
                     <div className="col-9 mb-5">
                         {/* {tab === POST_TAB &&
                             listPosts.length>0 &&
                             listPosts.filter((post) => post.user._id === userId)
                                 .map((post) => <Post post={post} />)} */}
-                        {tab === INFO_TAB && <Info userProfile={userProfile}/>}
+                        {tab === INFO_TAB && <Info/>}
+                        {tab === CHANGE_PASSWORD_TAB && <ChangePassword/>}
                             
                     </div>
                 </div>

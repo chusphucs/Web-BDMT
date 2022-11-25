@@ -2,6 +2,8 @@ const hashHelper = require('../../helpers/password-encrypter/hash_helper')
 const jwt = require('jsonwebtoken')
 const models = require('../../models/index')
 
+const { getUserById } = require('../CRUD/user')
+
 async function login(request, response) {
     try {
         
@@ -17,7 +19,7 @@ async function login(request, response) {
                     message: 'Wrong password!',
                 })
             }
-
+            const user = await getUserById(dbUser.id)
             jwt.sign(
                 {
                     user_id: dbUser.id,
@@ -34,7 +36,7 @@ async function login(request, response) {
                     return response.status(200).json({
                         message: 'Login successfully!',
                         token: token,
-                        user: dbUser,
+                        user: user,
                     })
                 },
             )
