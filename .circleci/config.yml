@@ -1,0 +1,60 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+  docker: circleci/docker@1.6.0
+
+jobs:
+  build-and-push:
+    environment:
+      DOCKER_IMAGE_API: bdmt-api
+      DOCKER_IMAGE_UI: bdmt-ui
+      DOCKER_TAG: latest
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check:
+          docker-username: DOCKER_USER
+          docker-password: DOCKER_PASSWORD
+      - docker/build:
+          path: ./back-end
+          docker-context: ./back-end
+          image: $DOCKER_USER/$DOCKER_IMAGE_API
+          tag: $DOCKER_TAG
+      - docker/build:
+          path: ./front-end
+          docker-context: ./front-end
+          image: $DOCKER_USER/$DOCKER_IMAGE_UI
+          tag: $DOCKER_TAG
+
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: $DOCKER_USER/$DOCKER_IMAGE_API
+          tag: $DOCKER_TAG
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: $DOCKER_USER/$DOCKER_IMAGE_UI
+          tag: $DOCKER_TAG
+      - run:
+          command: |
+            echo "Digest is: $(</tmp/digest.txt)"
+  deploy:
+    executor: docker/docker
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - $SSH_KEY_FINGERPRINT
+      - run: sudo apt-get install sshpass
+      - run: sshpass -p *=4Y8-Yf72TdZ1r9 ssh -o StrictHostKeyChecking=no $DEPLOYED_USER@$DEPLOYED_SERVER -p 4433 './deploy.sh'
+workflows:
+  commit:
+    jobs:
+      - build-and-push:
+          filters:
+            branches:
+              only:
+                - main
+      - deploy:
+          requires:
+            - build-and-push
