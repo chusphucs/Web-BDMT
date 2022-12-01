@@ -2,9 +2,12 @@ const models = require('../../models/index')
 const REVIEWER = 3
 const STORE_OWNER = 3
 const ADMIN = 3
+const {
+    getAllPost
+} = require('../CRUD/post')
 const index = async (req, res) => {
     try {
-        const posts = await models.Post.findAll()
+        const posts = await getAllPost()
         return res.status(200).json(posts)
     } catch (error) {
         return res.status(500).json({

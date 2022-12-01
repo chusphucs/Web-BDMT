@@ -3,6 +3,7 @@ import { Carousel, Input, Tooltip } from "antd";
 import { LikeOutlined, LikeFilled } from "@ant-design/icons";
 import Comment from "../../components/comment";
 import { listPostsImages } from "../../utils";
+import { getDateTime } from "../../helpers/formatDate";
 import "./post.scss";
 const { TextArea } = Input;
 function Post({ post }) {
@@ -18,18 +19,18 @@ function Post({ post }) {
                                 className="img-circle"
                                 style={{ width: "50px", height: "50px" }}
                                 alt=""
-                                src={post.user.avatar}
+                                src={process.env.REACT_APP_API_URL + post.User.UserInfo?.avatar}
                             />
                         </div>
                         <div className="ms-3">
                             <a className="user-name" href="/">
-                                {post.user.username}
+                                {post.User.name}
                             </a>
                             <br />
-                            <span>{post.datetime}</span>
+                            <span>{getDateTime(post.createdAt)}</span>
                         </div>
                     </div>
-                    <p className="mt-2">{post.text}</p>
+                    <p className="mt-2">{post.content}</p>
                 </div>
                 <div className="position-relative">
                     <Carousel
@@ -86,17 +87,19 @@ function Post({ post }) {
                                     alt=""
                                 />
                                 <span className="ms-2">
-                                    {post.numberOfLike}
+                                    {/* {post.numberOfLike} */}
+                                    2
                                 </span>
                             </Tooltip>
                         )}
-                        {post.commentsOfPost.length > 0 && (
+                        {/* {post.commentsOfPost.length > 0 && ( */}
                             <div className="ms-auto underline">
                                 <span onClick={() => setShowComment(true)}>
-                                    {post.commentsOfPost.length + 1} bình luận
+                                    {/* {post.commentsOfPost.length + 1} bình luận */}
+                                    2 bình luận
                                 </span>
                             </div>
-                        )}
+                        {/* )} */}
                     </div>
                     <div className="post-container__bottom__action">
                         <div
@@ -128,7 +131,7 @@ function Post({ post }) {
                         <img
                             className="img-circle"
                             alt=""
-                            src={post.user.avatar}
+                            src={process.env.REACT_APP_API_URL + post.User.UserInfo.avatar}
                         />
                         <div className="comment">
                             <TextArea
