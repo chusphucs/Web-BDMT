@@ -1,21 +1,28 @@
 import React, { useState } from "react";
 import { Input, Form } from "antd";
 import useAuth from "../../hooks/useAuth";
+import postApi from "../../api/postApi";
 import "./posting.scss";
 
 const { TextArea } = Input;
 function Posting() {
     const { user } = useAuth()
     const [images, setImages] = useState([]);
+    const [text, setText] = useState()
 
     const handleUploadImage = (e) => {
         var listsImage = images.slice();
         listsImage.push(URL.createObjectURL(e.target.files[0]));
         setImages(listsImage);
     };
-    const handleSubmit = (values) => {
+    const handleSubmit = async () => {
+        const newPost = {
+            user_id: user.id,
+            content: text,
+        }
+        await postApi.createNew(newPost)
+        window.location.reload(false)
     };
-    console.log(user);
     return (
         <Form className="posting-container" onFinish={handleSubmit}>
             <div className="posting-container__top">
@@ -25,6 +32,7 @@ function Posting() {
                         placeholder="Bạn đang nghĩ gì ?"
                         name="text"
                         autoSize={{ minRows: 1, maxRows: 15 }}
+                        onChange={(e) => setText(e.target.value)}
                     />
                     <label className="icon-image" for="image-input">
                         <img

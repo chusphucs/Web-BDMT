@@ -1,29 +1,53 @@
-const postModel = require(process.cwd() + '/models/index').Post
+const postModel = require(process.cwd() + "/models/index").Post;
+const models = require(process.cwd() + "/models/index");
+
+const include = [
+    {
+        model: models.User,
+        attributes: {
+            exclude: ["password", "updatedAt", "createdAt", "deletedAt"],
+        },
+        include: [
+            {
+                model: models.UserInfo,
+                attributes: { exclude: ["createdAt", "updatedAt"] },
+                required: true,
+            },
+        ],
+        as: "User",
+        required: true,
+    },
+];
 
 async function index() {
-    return postModel.findAndCountAll()
+    return postModel.findAndCountAll({
+        include: include,
+        order: [
+            ["createdAt", "DESC"],
+        ],
+    });
 }
 
 async function showByPostId(postId) {
-    return postModel.findOne({ where: { id: postId } })
+    return postModel.findOne({ where: { id: postId } });
 }
 
 async function create(newPost) {
-    return postModel.create(newPost)
+    return postModel.create(newPost);
 }
 
 async function update(updatePost, postId) {
-    return postModel.update(updatePost, { where: { id: postId } })
+    return postModel.update(updatePost, { where: { id: postId } });
 }
 
 async function destroy(postId) {
-    return postModel.destroy({ where: { id: postId } })
+    return postModel.destroy({ where: { id: postId } });
 }
 
 module.exports = {
-    index: index,
+    getAllPost: index,
     getPostByPostId: showByPostId,
     addNewPost: create,
     updatePostByPostId: update,
     deletePostByPostId: destroy,
-}
+};

@@ -1,10 +1,14 @@
 import axiosClient from './axiosClient'
 
-const userApi  = {
-    getPosts: () => {
-        const url = `api/posts/`
+const postApi  = {
+    getAll: () => {
+        const url = `/api/posts`
         return axiosClient.get(url)
+    },
+    createNew: (credentials) => {
+        const url = `/api/posts/`
+        return axiosClient.post(url,credentials)
     },
 }
 
-export default userApi 
+export default postApi 
