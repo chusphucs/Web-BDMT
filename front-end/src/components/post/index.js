@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
-import { Carousel, Input, Tooltip } from "antd";
-import { LikeOutlined, LikeFilled } from "@ant-design/icons";
+import { Carousel, Input, Tooltip ,Menu, Dropdown, Modal} from "antd";
+import { DownOutlined } from '@ant-design/icons'
+import { LikeOutlined, LikeFilled,EllipsisOutlined } from "@ant-design/icons";
 import Comment from "../../components/comment";
 import { listPostsImages } from "../../utils";
 import { getDateTime } from "../../helpers/formatDate";
@@ -9,25 +10,107 @@ const { TextArea } = Input;
 function Post({ post }) {
     const slider = useRef();
     const [showComment, setShowComment] = useState(false);
+    const [showModal,setShowModal] = useState(false);
+
+    const handleIconEdit = () =>{
+        setShowModal(true)
+    }
+
+    const handleCancel = () => {
+        setShowModal(false)
+    }
+
+    const menu = () => {    
+        return (
+            <Menu
+            >
+                <Menu.Item key="1" onClick={handleIconEdit}>
+                    Edit
+                </Menu.Item>
+                <Menu.Item key="2">
+                   Delete
+                </Menu.Item>
+              
+            </Menu>
+        )
+    }
+
     return (
         <div className="post-container">
             <div className="post-content">
-                <div className="mx-3">
-                    <div className="d-flex align-items-center">
-                        <div className="shape-circle">
-                            <img
-                                className="img-circle"
-                                style={{ width: "50px", height: "50px" }}
-                                alt=""
-                                src={process.env.REACT_APP_API_URL + post.User.UserInfo?.avatar}
-                            />
+            <Modal
+                    className="popup"
+                    visible={showModal}
+                    onCancel={handleCancel}
+                    footer={null}
+                >
+                    <div className="popup-inner">
+                        <div className="create-post-header">
+                        <h2 className="text-header">Create Post</h2>
+                        <button
+                            className="close-btn"
+                           
+                        ></button>
+                      
                         </div>
-                        <div className="ms-3">
-                            <a className="user-name" href="/">
-                                {post.User.name}
-                            </a>
-                            <br />
-                            <span>{getDateTime(post.createdAt)}</span>
+
+                        <div className="create-post-avatar">
+                        <img className="avatar"  alt="" />
+                        <h5>Name</h5>
+                        </div>
+                        <div className="create-post-body">
+                        <textarea placeholder="What's on your mind?" rows="20" cols="70" >
+                        </textarea>
+                 
+                        </div>
+                        <div className="div-icon">
+                        <h5>Add to your post</h5>
+                        <label className="custom-file-upload">
+                            <input
+                                type="file" 
+                                // onChange={onSelectFile}
+                                className="input-file"
+                            />
+                            {/* <FontAwesomeIcon icon={faFile} /> */}
+                        </label>
+                        </div>
+                        <div >
+                        <button className="btn-submit">Post</button>
+                        </div>
+                    </div>
+                </Modal>
+
+                <div className="mx-3">
+                    <div className="d-flex align-items-center post-content__header">
+                       <div className="post-content__header-avt">
+                            <div className="shape-circle">
+                                <img
+                                    className="img-circle"
+                                    style={{ width: "50px", height: "50px" }}
+                                    alt=""
+                                    src={process.env.REACT_APP_API_URL + post.User.UserInfo?.avatar}
+                                />
+                            </div>
+                            
+                            <div className="ms-3">
+                                <a className="user-name" href="/">
+                                    {post.User.name}
+                                </a>
+                                <br />
+                                <span>{getDateTime(post.createdAt)}</span>
+                            </div>
+                       </div>
+
+                        <div className="post-content__header-icon-edit">
+                        <Dropdown overlay={menu} trigger="click">
+                            <label
+                                className="header-right__content"
+                                onClick={(e) => e.preventDefault()}
+                            >
+                                <EllipsisOutlined/>
+                            </label>
+                        </Dropdown>
+                         
                         </div>
                     </div>
                     <p className="mt-2">{post.content}</p>
