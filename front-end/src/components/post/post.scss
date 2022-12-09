@@ -1,6 +1,7 @@
 body {
     background-color: #fafafa;
 }
+
 .post-container {
     width: 100%;
     background-color: #fff;
@@ -11,23 +12,28 @@ body {
     flex-direction: column;
     border: 1px solid #dbdbdb;
     gap: 15px;
+
     &__header {
         display: flex;
         justify-content: space-between;
     }
+
     &__bottom {
         display: flex;
         flex-direction: column;
         gap: 10px;
+
         &__action {
             border-top: 1px solid #d0d0d0;
             border-bottom: 1px solid #d0d0d0;
             display: flex;
+
             p {
                 font-weight: 600;
                 color: #65676b;
                 margin: 7px 0 !important;
             }
+
             .col-4 {
                 text-align: center;
                 cursor: pointer;
@@ -35,83 +41,102 @@ body {
                 margin: 2px 0;
                 position: relative;
             }
+
             .col-4:hover {
                 background-color: #f0f2f5;
             }
+
             .txt-blue {
-                p,.icon{
+
+                p,
+                .icon {
                     color: #38b3ef;
                 }
             }
-            .icon{
+
+            .icon {
                 font-size: 16px;
                 margin: auto 0;
                 margin-right: 3px;
                 color: #65676b;
             }
         }
+
         &__comment {
             display: flex;
+
             img {
                 width: 40px;
                 height: 40px;
-            }    
-            .comment{
+            }
+
+            .comment {
                 background-color: #f0f2f5;
                 border-radius: 20px;
                 padding: 5px 10px;
                 margin: auto 0;
                 width: 92%;
                 margin-left: auto;
-            }        
+            }
+
             .textarea {
                 height: fit-content;
                 outline: none;
                 background-color: transparent;
             }
+
             .textarea:hover {
                 border: none !important;
             }
+
             .ant-input:focus,
             .ant-input:not(:hover) {
                 box-shadow: none !important;
                 border: none !important;
             }
         }
-        .more-comment{
+
+        .more-comment {
             font-size: 14px;
             font-weight: 600;
             color: #65676b;
         }
-        .more-comment:hover{
+
+        .more-comment:hover {
             text-decoration: underline;
-            
+
         }
     }
+
     &__list-images {
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: #dbdbdb;
+
         img {
             max-height: 650px;
         }
+
         &__btn-prev {
             position: absolute;
             top: 50%;
             left: 15px;
             transform: translateY(-50%);
             border-radius: 50%;
+
             img {
                 height: 35px;
             }
         }
+
         &__btn-next {
             position: absolute;
             top: 50%;
             right: 15px;
             transform: translateY(-50%);
             border-radius: 50%;
+
             img {
                 height: 35px;
             }
@@ -128,9 +153,11 @@ body {
 
     &.is-hidden {
         position: relative;
+
         .post-content {
             opacity: 0.1;
         }
+
         .post-overlay {
             display: flex;
             flex-direction: column;
@@ -163,16 +190,19 @@ body {
         }
     }
 }
+
 .slick-track {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
 }
-.underline:hover{
+
+.underline:hover {
     text-decoration: underline;
     cursor: pointer;
 }
-.ant-tooltip-inner{
+
+.ant-tooltip-inner {
     border-radius: 10px !important;
 }
 
@@ -181,7 +211,7 @@ body {
     justify-content: space-between;
 }
 
-.post-content__header-avt{
+.post-content__header-avt {
     display: flex;
 }
 
@@ -194,85 +224,90 @@ body {
 
 // Modal
 
-.popup{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color:  rgba(0, 0, 0, 0.2);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
- .create-post-header{
+
+.create-post-header {
     text-align: center;
     display: block;
     border-bottom: 0.3px inset #333;
- }
-.avatar {
-    vertical-align: middle;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-.create-post-avatar{
-    display: flex;
-}
-.create-post-avatar .avatar{
-    padding: 12px 20px 12px 32px;
-}
-.create-post-body{
-  padding-bottom: 20px;
-  text-align: center;
-}
-.create-post-body textarea{
-  border: none;
-  font-size: 14px;
-  width: 600px;
-  height: 200px;
-}
-.create-post-body textarea:focus{
-  border: none;
-}
-// .div-icon{
-//   border-radius: 8px;
-//   display: inline-block;
-//   height: 60px;
-//   width: 520px;
-//   border: 0.3px inset #333;
-//   text-align: left;
-//   border: 1px solid;
-//   padding: 10px;
-//   box-shadow: 1px 1px 1px #888888;
-//   position: relative;
-// }
-.div-icon h5{
-  padding-left: 24px;
-}
-.btn-submit{
-  border-radius: 16px;
-  margin: 16px;
-  height:40px;
-  width:520px;
-  background-color: #64B5FF;
-  border: 1px solid;
-  padding: 10px;
-  box-shadow: 1.5px 1.5px 1.5px #888888;
 }
 
-.custom-file-upload {
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  position: absolute;
-  top: 25px;
-  right: 0px;
+.btn-save {
+    display: inline-block;
+    border-radius: 16px;
+    height: 40px;
+    width: 400px;
+    background-color: #64B5FF;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 1.5px 1.5px 1.5px #888888;
+
+}
+
+.submit {
+    text-align: center;
 }
 
 input[type="file"] {
-  display: none;
+    display: none;
 }
+
+.content {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+}
+.btn{
+    display: inline-block;
+}
+
+.popup-inner {
+    text-align: center;
+}
+.del-btn{
+    position: absolute;
+    background-color: red;
+    left: 30%;
+    border-radius: 8px;
+    height: 30px;
+    width: 80px;
+    border: 1px solid;
+}
+.can-btn{
+    position: absolute;
+    right: 30%;
+    border-radius: 8px;
+    height: 30px;
+    width: 80px;
+    border: 1px solid;
+}
+
+
+
+.create-post-body {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.create-post-body textarea {
+    border: none;
+    font-size: 14px;
+    width: 500px;
+    height: 200px;
+}
+
+.create-post-body textarea:focus {
+    border: none;
+}
+
+.dropdown {
+    width: 100px;
+    height: 100px;
+    border-radius: 14px;
+}
+
+.dropdown .drop-item {
+    display: block ruby;
+}
+

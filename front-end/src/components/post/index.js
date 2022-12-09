@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Carousel, Input, Tooltip ,Menu, Dropdown, Modal} from "antd";
-import { DownOutlined } from '@ant-design/icons'
-import { LikeOutlined, LikeFilled,EllipsisOutlined } from "@ant-design/icons";
+import { LikeOutlined, LikeFilled,EllipsisOutlined ,DeleteOutlined,EditOutlined} from "@ant-design/icons";
 import Comment from "../../components/comment";
 import { listPostsImages } from "../../utils";
 import { getDateTime } from "../../helpers/formatDate";
@@ -10,25 +9,32 @@ const { TextArea } = Input;
 function Post({ post }) {
     const slider = useRef();
     const [showComment, setShowComment] = useState(false);
-    const [showModal,setShowModal] = useState(false);
+    const [showModalEdit,setShowModalEdit] = useState(false);
+    const [showModalDelete,setShowModalDelete] = useState(false);
 
     const handleIconEdit = () =>{
-        setShowModal(true)
+        setShowModalEdit(true)
     }
 
     const handleCancel = () => {
-        setShowModal(false)
+        setShowModalEdit(false)
+    }
+    const handleIconDelete = () =>{
+        setShowModalDelete(true)
+    }
+    const handleCancelDelete = () => {
+        setShowModalDelete(false)
     }
 
     const menu = () => {    
         return (
-            <Menu
-            >
-                <Menu.Item key="1" onClick={handleIconEdit}>
-                    Edit
+            <Menu className="dropdown">
+                <Menu.Item className="drop-item" key="1" onClick={handleIconEdit}>
+                <EditOutlined />
+                    <p>Edit</p>
                 </Menu.Item>
-                <Menu.Item key="2">
-                   Delete
+                <Menu.Item  className="drop-item" key="2" onClick={handleIconDelete}>
+                <DeleteOutlined /> <p>Delete</p>
                 </Menu.Item>
               
             </Menu>
@@ -40,42 +46,59 @@ function Post({ post }) {
             <div className="post-content">
             <Modal
                     className="popup"
-                    visible={showModal}
+                    visible={showModalEdit}
                     onCancel={handleCancel}
                     footer={null}
                 >
                     <div className="popup-inner">
                         <div className="create-post-header">
-                        <h2 className="text-header">Create Post</h2>
-                        <button
-                            className="close-btn"
-                           
-                        ></button>
-                      
+                        <h2 className="text-header">Edit Post</h2>
+
                         </div>
 
-                        <div className="create-post-avatar">
-                        <img className="avatar"  alt="" />
-                        <h5>Name</h5>
+                        <div className="post-content__header-avt">
+                            <div className="shape-circle">
+                                <img
+                                    className="img-circle"
+                                    style={{ width: "50px", height: "50px" }}
+                                    alt=""
+                                    src={process.env.REACT_APP_API_URL + post.User.UserInfo?.avatar}
+                                />
+                            </div>
+                            
+                            <div className="ms-3">
+                                <a className="user-name" href="/">
+                                    {post.User.name}
+                                </a>
+                                <br />
+                                <span>{getDateTime(post.createdAt)}</span>
+                            </div>
+                       </div>
+                       <div className="create-post-body">
+                        <textarea className="content mt-2" rows="20" cols="70" >{post.content}</textarea>
                         </div>
-                        <div className="create-post-body">
-                        <textarea placeholder="What's on your mind?" rows="20" cols="70" >
-                        </textarea>
-                 
+                        <div>                            
                         </div>
-                        <div className="div-icon">
-                        <h5>Add to your post</h5>
-                        <label className="custom-file-upload">
-                            <input
-                                type="file" 
-                                // onChange={onSelectFile}
-                                className="input-file"
-                            />
-                            {/* <FontAwesomeIcon icon={faFile} /> */}
-                        </label>
+                        <div className="submit" >
+                        <button className="btn-save">Save</button>
                         </div>
-                        <div >
-                        <button className="btn-submit">Post</button>
+                    </div>
+                </Modal>
+
+                {/* Delete */}
+                <Modal
+                    className="popup"
+                    visible={showModalDelete}
+                    onCancel={handleCancelDelete}
+                    footer={null}
+                >
+                    <div className="popup-inner">
+                        <div className="create-post-header">
+                        <h2 className="text-header">Delete your Post?</h2>
+                        </div>
+                        <div className="btn">
+                            <button className="del-btn" >Delete</button>
+                            <button className="can-btn" onClick={handleCancelDelete}>Cancel</button>
                         </div>
                     </div>
                 </Modal>
